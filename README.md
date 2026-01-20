@@ -91,17 +91,28 @@ Constantly exploring emerging technologies and pioneering new approaches
 ![Elasticsearch](https://img.shields.io/badge/Elasticsearch-005571?style=flat-square&logo=elasticsearch&logoColor=white)
 ![Jaeger](https://img.shields.io/badge/Jaeger-66CFE3?style=flat-square&logo=jaeger&logoColor=black)
 
-## 📊 GitHub Stats
+## 📊 GitHub Activity
 
 <div align="center">
 
-![GitHub Stats](https://github-readme-stats.vercel.app/api?username=j1d2&show_icons=true&theme=tokyonight&hide_border=true&bg_color=0f172a&title_color=a78bfa&icon_color=60a5fa&text_color=e2e8f0&count_private=true&include_all_commits=true)
+[![GitHub Streak](https://streak-stats.demolab.com/?user=j1d2&theme=tokyonight&hide_border=true&background=0f172a&ring=a78bfa&fire=60a5fa&currStreakLabel=e2e8f0&sideLabels=e2e8f0&dates=94a3b8)](https://github.com/j1d2)
 
-![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=j1d2&layout=compact&theme=tokyonight&hide_border=true&bg_color=0f172a&title_color=a78bfa&text_color=e2e8f0&langs_count=8)
+</div>
 
-![GitHub Streak](https://streak-stats.demolab.com/?user=j1d2&theme=tokyonight&hide_border=true&background=0f172a&ring=a78bfa&fire=60a5fa&currStreakLabel=e2e8f0&sideLabels=e2e8f0&dates=94a3b8)
+---
 
-![Activity Graph](https://github-readme-activity-graph.vercel.app/graph?username=j1d2&theme=tokyo-night&hide_border=true&bg_color=0f172a&color=a78bfa&line=60a5fa&point=e2e8f0&area=true&area_color=60a5fa)
+## 💻 Tech Expertise
+
+<div align="center">
+
+| **Category** | **Technologies** |
+|:---:|:---|
+| 🤖 **AI/ML** | Claude, Copilot, Gemini, TensorFlow, PyTorch, LangChain, SageMaker, Vertex AI |
+| ☁️ **Cloud** | AWS, GCP, Azure, Kubernetes, Terraform, CDK, Docker, Lambda |
+| 🔧 **DevOps** | GitHub Actions, GitLab CI, Jenkins, Argo CD, Helm |
+| 💾 **Data** | Snowflake, Redshift, PostgreSQL, MongoDB, Kafka, Airflow, DBT |
+| 📊 **Observability** | Prometheus, Grafana, ELK Stack, Jaeger, X-Ray, New Relic |
+| 💻 **Languages** | Python, Go, Rust, JavaScript/Node.js, Bash, Java |
 
 </div>
 
