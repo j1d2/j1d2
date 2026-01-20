@@ -19,14 +19,34 @@ I'm a passionate technologist with **15+ years of experience** turning complex c
 
 ## 💡 What I Do
 
-```yaml
-focus_areas:
-  - AI & Machine Learning: "Building agentic workflows & AI-powered systems"
-  - Cloud Architecture: "Designing scalable multi-cloud solutions"
-  - DevOps & Automation: "Creating robust CI/CD pipelines & GitOps workflows"
-  - Data Engineering: "Building real-time data platforms processing billions of events"
-  - Observability: "Implementing comprehensive monitoring & SRE practices"
-```
+<table>
+<tr>
+<td width="50%" valign="top">
+
+### 🤖 AI & Machine Learning
+Building agentic workflows & AI-powered systems that leverage cutting-edge LLMs and ML infrastructure
+
+### ☁️ Cloud Architecture
+Designing scalable multi-cloud solutions across AWS, GCP, and Azure
+
+### 🔧 DevOps & Automation
+Creating robust CI/CD pipelines & GitOps workflows that streamline delivery
+
+</td>
+<td width="50%" valign="top">
+
+### 💾 Data Engineering
+Building real-time data platforms processing billions of events daily
+
+### 📊 Observability & SRE
+Implementing comprehensive monitoring, tracing, and reliability practices
+
+### 🚀 Innovation
+Constantly exploring emerging technologies and pioneering new approaches
+
+</td>
+</tr>
+</table>
 
 ## 🛠️ Tech Stack
 
