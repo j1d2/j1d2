@@ -75,11 +75,13 @@ focus_areas:
 
 <div align="center">
 
-![GitHub Stats](https://github-readme-stats.vercel.app/api?username=j1d2&show_icons=true&theme=tokyonight&hide_border=true&bg_color=1a1b27&title_color=a78bfa&icon_color=60a5fa&text_color=e2e8f0)
+![GitHub Stats](https://github-readme-stats.vercel.app/api?username=j1d2&show_icons=true&theme=tokyonight&hide_border=true&bg_color=0f172a&title_color=a78bfa&icon_color=60a5fa&text_color=e2e8f0&count_private=true&include_all_commits=true)
 
-![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=j1d2&layout=compact&theme=tokyonight&hide_border=true&bg_color=1a1b27&title_color=a78bfa&text_color=e2e8f0)
+![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=j1d2&layout=compact&theme=tokyonight&hide_border=true&bg_color=0f172a&title_color=a78bfa&text_color=e2e8f0&langs_count=8)
 
-![GitHub Streak](https://github-readme-streak-stats.herokuapp.com/?user=j1d2&theme=tokyonight&hide_border=true&background=1a1b27&ring=a78bfa&fire=60a5fa&currStreakLabel=e2e8f0)
+![GitHub Streak](https://streak-stats.demolab.com/?user=j1d2&theme=tokyonight&hide_border=true&background=0f172a&ring=a78bfa&fire=60a5fa&currStreakLabel=e2e8f0&sideLabels=e2e8f0&dates=94a3b8)
+
+![Activity Graph](https://github-readme-activity-graph.vercel.app/graph?username=j1d2&theme=tokyo-night&hide_border=true&bg_color=0f172a&color=a78bfa&line=60a5fa&point=e2e8f0&area=true&area_color=60a5fa)
 
 </div>
 
