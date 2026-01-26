@@ -95,7 +95,7 @@ Constantly exploring emerging technologies and pioneering new approaches
 
 <div align="center">
 
-[![GitHub Streak](https://streak-stats.demolab.com/?user=j1d2&theme=tokyonight&hide_border=true)](https://github.com/j1d2)
+![GitHub Streak](https://github-readme-streak-stats.herokuapp.com/?user=j1d2&theme=tokyonight&hide_border=true)
 
 ![Activity Graph](https://github-readme-activity-graph.vercel.app/graph?username=j1d2&theme=tokyo-night&hide_border=true&bg_color=0f172a&color=a78bfa&line=60a5fa&point=e2e8f0&area=true&area_color=60a5fa)
 
