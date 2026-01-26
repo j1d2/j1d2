@@ -17,6 +17,11 @@ This is JD's GitHub profile repository (j1d2/j1d2) - a special repository that d
 
 - `README.md` - Main profile content displayed on GitHub profile page
 - `.github/` - GitHub-specific configurations and instructions
+  - `copilot-instructions.md` - This file with context for Copilot
+  - `workflows/update-stats.yml` - Daily GitHub Action to update stats
+  - `scripts/generate-stats.py` - Python script for generating custom stats SVG
+- `assets/` - Generated assets
+  - `github-stats.svg` - Auto-generated stats card (commits, PRs, issues)
 
 ## Content Guidelines
 
@@ -77,9 +82,45 @@ This is JD's GitHub profile repository (j1d2/j1d2) - a special repository that d
 ## External Dependencies
 
 - **Badges**: shields.io
-- **GitHub Streak**: streak-stats.demolab.com
 - **Activity Graph**: github-readme-activity-graph.vercel.app
 - **Visitor Counter**: komarev.com/ghpvc
+
+## Custom Stats Implementation
+
+The profile uses a **custom GitHub stats card** generated daily via GitHub Actions:
+
+### How It Works
+1. **Workflow**: `.github/workflows/update-stats.yml` runs daily at midnight UTC (or manually via workflow_dispatch)
+2. **Script**: `.github/scripts/generate-stats.py` uses GitHub GraphQL API to:
+   - Query all contribution years for accurate all-time commit counts
+   - Fetch PRs and issues from all repositories (public + private)
+   - Generate SVG with tokyonight theme colors
+3. **Output**: Updates `assets/github-stats.svg` and commits automatically
+
+### Authentication
+- Uses fine-grained Personal Access Token stored as `STATS_TOKEN` secret
+- Required permissions (all read-only):
+  - Contents
+  - Metadata
+  - Issues
+  - Pull requests
+- Token securely accesses private repos without exposing specific details
+
+### Why Custom?
+- **Privacy**: Shows aggregate stats from private repos without exposing sensitive data
+- **Accuracy**: Direct GraphQL queries ensure correct all-time statistics
+- **Control**: No dependency on third-party services or Vercel instances
+- **Security**: Runs in our own GitHub Actions with encrypted secrets
+
+### Current Stats (as of last run)
+- 909 commits (all-time)
+- 201 PRs (across j1d2me-web, crabby_crypto_lake, j1d2, iamsam)
+- 127 issues (across multiple repos)
+
+### Maintenance
+- Stats update automatically daily - no manual intervention needed
+- If PAT expires, create new fine-grained token with same minimal permissions
+- SVG is committed by `github-actions[bot]` - bypasses branch protection
 
 ## Notes
 
