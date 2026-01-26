@@ -39,6 +39,12 @@ def fetch_github_stats():
         issues {
           totalCount
         }
+        openIssues: issues(states: OPEN) {
+          totalCount
+        }
+        closedIssues: issues(states: CLOSED) {
+          totalCount
+        }
         contributionsCollection {
           contributionYears
         }
@@ -104,11 +110,19 @@ def fetch_github_stats():
             total_commits += year_commits
             print(f"  {year}: {year_commits} commits")
     
+    # Calculate total issues (open + closed)
+    total_issues = data['openIssues']['totalCount'] + data['closedIssues']['totalCount']
+    
+    print(f"\nIssue breakdown:")
+    print(f"  Open: {data['openIssues']['totalCount']}")
+    print(f"  Closed: {data['closedIssues']['totalCount']}")
+    print(f"  Total: {total_issues}")
+    
     return {
         'total_stars': total_stars,
         'total_commits': total_commits,
         'total_prs': data['pullRequests']['totalCount'],
-        'total_issues': data['issues']['totalCount'],
+        'total_issues': total_issues,
         'followers': data['followers']['totalCount']
     }
 
