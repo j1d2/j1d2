@@ -25,11 +25,15 @@ COLORS = {
 def fetch_github_stats():
     """Fetch user stats from GitHub GraphQL API"""
     
-    # Query to get contribution years and basic stats
-    user_query = """
+    headers = {
+        'Authorization': f'Bearer {GITHUB_TOKEN}',
+        'Content-Type': 'application/json'
+    }
+    
+    # Get contribution years for commits
+    years_query = """
     query($login: String!) {
       user(login: $login) {
-        createdAt
         contributionsCollection {
           contributionYears
         }
@@ -37,31 +41,20 @@ def fetch_github_stats():
     }
     """
     
-    headers = {
-        'Authorization': f'Bearer {GITHUB_TOKEN}',
-        'Content-Type': 'application/json'
-    }
-    
     response = requests.post(
         'https://api.github.com/graphql',
-        json={'query': user_query, 'variables': {'login': USERNAME}},
+        json={'query': years_query, 'variables': {'login': USERNAME}},
         headers=headers
     )
     
     if response.status_code != 200:
-        raise Exception(f"GraphQL query failed: {response.status_code} {response.text}")
+        raise Exception(f"GraphQL query failed: {response.status_code}")
     
-    data = response.json()['data']['user']
-    
-    # Get all contribution years
-    years = data['contributionsCollection']['contributionYears']
+    years = response.json()['data']['user']['contributionsCollection']['contributionYears']
     print(f"Fetching commits for years: {years}")
     
-    # Fetch commits, PRs, and issues for each year to get all-time total
+    # Fetch commits for each year to get all-time total
     total_commits = 0
-    total_prs = 0
-    total_issues = 0
-    
     for year in years:
         year_query = f"""
         query($login: String!) {{
@@ -69,8 +62,6 @@ def fetch_github_stats():
             contributionsCollection(from: "{year}-01-01T00:00:00Z", to: "{year}-12-31T23:59:59Z") {{
               totalCommitContributions
               restrictedContributionsCount
-              totalPullRequestContributions
-              totalIssueContributions
             }}
           }}
         }}
@@ -88,14 +79,63 @@ def fetch_github_stats():
                 year_data['totalCommitContributions'] +
                 year_data['restrictedContributionsCount']
             )
-            year_prs = year_data['totalPullRequestContributions']
-            year_issues = year_data['totalIssueContributions']
-            
             total_commits += year_commits
-            total_prs += year_prs
-            total_issues += year_issues
+            print(f"  {year}: {year_commits} commits")
+    
+    # Query all repositories to count PRs and issues (including private)
+    repos_query = """
+    query($login: String!, $cursor: String) {
+      user(login: $login) {
+        repositories(first: 100, after: $cursor, ownerAffiliations: OWNER) {
+          pageInfo {
+            hasNextPage
+            endCursor
+          }
+          nodes {
+            name
+            pullRequests {
+              totalCount
+            }
+            issues {
+              totalCount
+            }
+          }
+        }
+      }
+    }
+    """
+    
+    total_prs = 0
+    total_issues = 0
+    cursor = None
+    has_next = True
+    
+    print(f"\nFetching PRs and issues from all repositories...")
+    
+    while has_next:
+        repos_response = requests.post(
+            'https://api.github.com/graphql',
+            json={'query': repos_query, 'variables': {'login': USERNAME, 'cursor': cursor}},
+            headers=headers
+        )
+        
+        if repos_response.status_code == 200:
+            repos_data = repos_response.json()['data']['user']['repositories']
             
-            print(f"  {year}: {year_commits} commits, {year_prs} PRs, {year_issues} issues")
+            for repo in repos_data['nodes']:
+                repo_prs = repo['pullRequests']['totalCount']
+                repo_issues = repo['issues']['totalCount']
+                
+                if repo_prs > 0 or repo_issues > 0:
+                    print(f"  {repo['name']}: {repo_prs} PRs, {repo_issues} issues")
+                
+                total_prs += repo_prs
+                total_issues += repo_issues
+            
+            has_next = repos_data['pageInfo']['hasNextPage']
+            cursor = repos_data['pageInfo']['endCursor']
+        else:
+            break
     
     print(f"\nAll-time totals:")
     print(f"  Commits: {total_commits}")
