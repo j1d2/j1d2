@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Generate GitHub stats SVG using GitHub GraphQL API
-Includes private repository statistics
+Includes private repository statistics - ALL TIME
 """
 
 import os
@@ -25,27 +25,28 @@ COLORS = {
 def fetch_github_stats():
     """Fetch user stats from GitHub GraphQL API"""
     
-    query = """
+    # Get account creation year for all-time commits
+    user_query = """
     query($login: String!) {
       user(login: $login) {
+        createdAt
+        followers {
+          totalCount
+        }
+        pullRequests {
+          totalCount
+        }
+        issues {
+          totalCount
+        }
         contributionsCollection {
-          totalCommitContributions
-          restrictedContributionsCount
+          contributionYears
         }
         repositories(first: 100, ownerAffiliations: OWNER, privacy: PUBLIC) {
           totalCount
           nodes {
             stargazerCount
           }
-        }
-        pullRequests(first: 1) {
-          totalCount
-        }
-        issues(first: 1) {
-          totalCount
-        }
-        followers {
-          totalCount
         }
       }
     }
@@ -58,7 +59,7 @@ def fetch_github_stats():
     
     response = requests.post(
         'https://api.github.com/graphql',
-        json={'query': query, 'variables': {'login': USERNAME}},
+        json={'query': user_query, 'variables': {'login': USERNAME}},
         headers=headers
     )
     
@@ -70,11 +71,38 @@ def fetch_github_stats():
     # Calculate total stars
     total_stars = sum(repo['stargazerCount'] for repo in data['repositories']['nodes'])
     
-    # Get commit count (includes private repos with restrictedContributionsCount)
-    total_commits = (
-        data['contributionsCollection']['totalCommitContributions'] +
-        data['contributionsCollection']['restrictedContributionsCount']
-    )
+    # Get all contribution years
+    years = data['contributionsCollection']['contributionYears']
+    print(f"Fetching commits for years: {years}")
+    
+    # Fetch commits for each year to get all-time total
+    total_commits = 0
+    for year in years:
+        year_query = f"""
+        query($login: String!) {{
+          user(login: $login) {{
+            contributionsCollection(from: "{year}-01-01T00:00:00Z", to: "{year}-12-31T23:59:59Z") {{
+              totalCommitContributions
+              restrictedContributionsCount
+            }}
+          }}
+        }}
+        """
+        
+        year_response = requests.post(
+            'https://api.github.com/graphql',
+            json={'query': year_query, 'variables': {'login': USERNAME}},
+            headers=headers
+        )
+        
+        if year_response.status_code == 200:
+            year_data = year_response.json()['data']['user']['contributionsCollection']
+            year_commits = (
+                year_data['totalCommitContributions'] +
+                year_data['restrictedContributionsCount']
+            )
+            total_commits += year_commits
+            print(f"  {year}: {year_commits} commits")
     
     return {
         'total_stars': total_stars,
@@ -118,7 +146,7 @@ def generate_svg(stats):
       <svg class="icon" x="0" y="-12" width="16" height="16" viewBox="0 0 16 16">
         <path d="M11.93 8.5a4.002 4.002 0 01-7.86 0H.75a.75.75 0 010-1.5h3.32a4.002 4.002 0 017.86 0h3.32a.75.75 0 010 1.5h-3.32zM8 6a2 2 0 100 4 2 2 0 000-4z"/>
       </svg>
-      <text class="stat" x="25" y="0">Total Commits (2026):</text>
+      <text class="stat" x="25" y="0">Total Commits (All Time):</text>
       <text class="stat-value bold" x="380" y="0" text-anchor="end">{stats['total_commits']:,}</text>
     </g>
     
@@ -151,9 +179,9 @@ def main():
     """Main execution"""
     print("Fetching GitHub stats...")
     stats = fetch_github_stats()
-    print(f"Stats: {stats}")
+    print(f"\nFinal Stats: {stats}")
     
-    print("Generating SVG...")
+    print("\nGenerating SVG...")
     svg_content = generate_svg(stats)
     
     # Ensure assets directory exists
