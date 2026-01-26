@@ -25,26 +25,11 @@ COLORS = {
 def fetch_github_stats():
     """Fetch user stats from GitHub GraphQL API"""
     
-    # Get account creation year for all-time commits
+    # Query to get contribution years and basic stats
     user_query = """
     query($login: String!) {
       user(login: $login) {
         createdAt
-        followers {
-          totalCount
-        }
-        pullRequests {
-          totalCount
-        }
-        issues {
-          totalCount
-        }
-        openIssues: issues(states: OPEN) {
-          totalCount
-        }
-        closedIssues: issues(states: CLOSED) {
-          totalCount
-        }
         contributionsCollection {
           contributionYears
         }
@@ -72,8 +57,11 @@ def fetch_github_stats():
     years = data['contributionsCollection']['contributionYears']
     print(f"Fetching commits for years: {years}")
     
-    # Fetch commits for each year to get all-time total
+    # Fetch commits, PRs, and issues for each year to get all-time total
     total_commits = 0
+    total_prs = 0
+    total_issues = 0
+    
     for year in years:
         year_query = f"""
         query($login: String!) {{
@@ -81,6 +69,8 @@ def fetch_github_stats():
             contributionsCollection(from: "{year}-01-01T00:00:00Z", to: "{year}-12-31T23:59:59Z") {{
               totalCommitContributions
               restrictedContributionsCount
+              totalPullRequestContributions
+              totalIssueContributions
             }}
           }}
         }}
@@ -98,22 +88,24 @@ def fetch_github_stats():
                 year_data['totalCommitContributions'] +
                 year_data['restrictedContributionsCount']
             )
+            year_prs = year_data['totalPullRequestContributions']
+            year_issues = year_data['totalIssueContributions']
+            
             total_commits += year_commits
-            print(f"  {year}: {year_commits} commits")
+            total_prs += year_prs
+            total_issues += year_issues
+            
+            print(f"  {year}: {year_commits} commits, {year_prs} PRs, {year_issues} issues")
     
-    # Calculate total issues (open + closed)
-    total_issues = data['openIssues']['totalCount'] + data['closedIssues']['totalCount']
-    
-    print(f"\nIssue breakdown:")
-    print(f"  Open: {data['openIssues']['totalCount']}")
-    print(f"  Closed: {data['closedIssues']['totalCount']}")
-    print(f"  Total: {total_issues}")
+    print(f"\nAll-time totals:")
+    print(f"  Commits: {total_commits}")
+    print(f"  PRs: {total_prs}")
+    print(f"  Issues: {total_issues}")
     
     return {
         'total_commits': total_commits,
-        'total_prs': data['pullRequests']['totalCount'],
-        'total_issues': total_issues,
-        'followers': data['followers']['totalCount']
+        'total_prs': total_prs,
+        'total_issues': total_issues
     }
 
 def generate_svg(stats):
