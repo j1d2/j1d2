@@ -15,18 +15,28 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Generate stats card
-        uses: jac237/github-readme-stats-action@v1.1.0
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          card: stats
-          options: username=j1d2&show_icons=true&theme=tokyonight&hide_border=true&bg_color=0f172a&title_color=a78bfa&icon_color=60a5fa&text_color=e2e8f0&include_all_commits=true
-          path: assets/github-stats.svg
-          token: ${{ secrets.GITHUB_TOKEN }}
+          node-version: '20'
 
-      - name: Commit and push changes
+      - name: Clone github-readme-stats
+        run: |
+          git clone https://github.com/anuraghazra/github-readme-stats.git /tmp/stats
+          cd /tmp/stats
+          npm install
+
+      - name: Generate stats with private repos
+        env:
+          PAT_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          cd /tmp/stats
+          node api/index.js "username=j1d2&show_icons=true&theme=tokyonight&hide_border=true&bg_color=0f172a&title_color=a78bfa&icon_color=60a5fa&text_color=e2e8f0&include_all_commits=true&count_private=true" > $GITHUB_WORKSPACE/assets/github-stats.svg
+
+      - name: Commit and push if changed
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add assets/github-stats.svg
-          git diff --staged --quiet || git commit -m "Update GitHub stats card"
+          git diff --staged --quiet || git commit -m "Update GitHub stats card [automated]"
           git push
