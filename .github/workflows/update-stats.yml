@@ -1,0 +1,32 @@
+name: Update GitHub Stats
+
+on:
+  schedule:
+    - cron: "0 0 * * *"  # Runs daily at midnight UTC
+  workflow_dispatch:  # Allows manual trigger
+
+jobs:
+  update-stats:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Generate stats card
+        uses: jac237/github-readme-stats-action@v1.1.0
+        with:
+          card: stats
+          options: username=j1d2&show_icons=true&theme=tokyonight&hide_border=true&bg_color=0f172a&title_color=a78bfa&icon_color=60a5fa&text_color=e2e8f0&include_all_commits=true
+          path: assets/github-stats.svg
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Commit and push changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/github-stats.svg
+          git diff --staged --quiet || git commit -m "Update GitHub stats card"
+          git push
