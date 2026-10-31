@@ -4,7 +4,7 @@
 
 ### Principal Engineer | AI Engineering, Cloud & Data
 
-*Architecting scalable systems at the intersection of AI, cloud, and data*
+*GenAI, fine-tuning, harness engineering, and graph engineering*
 
 [![Portfolio](https://img.shields.io/badge/Portfolio-j1d2.me-purple?style=for-the-badge&logo=vercel)](https://j1d2.me)
 [![GitHub](https://img.shields.io/badge/GitHub-j1d2-181717?style=for-the-badge&logo=github)](https://github.com/j1d2)
