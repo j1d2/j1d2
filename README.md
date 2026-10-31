@@ -136,7 +136,7 @@ Constantly exploring emerging technologies and pioneering new approaches
 ## 📫 Let's Connect
 
 - 🌐 Portfolio: [j1d2.me](https://j1d2.me)
-- 📧 Email: myself@j1d2.me
+- 🐙 GitHub: [j1d2](https://github.com/j1d2)
 - 💼 Open to interesting projects and collaborations
 
 ---
