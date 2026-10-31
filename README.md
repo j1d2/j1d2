@@ -15,7 +15,7 @@
 
 ## 🚀 About Me
 
-I'm a passionate technologist with **15+ years of experience** turning complex challenges into elegant solutions. My journey spans serverless architectures, Kubernetes orchestration, CI/CD automation, GitOps, and multi-cloud environments. My focus now is **AI engineering**: GenAI, model fine-tuning, harness engineering, and graph engineering.
+I have **15+ years** across serverless architectures, Kubernetes, CI/CD, GitOps, and multi-cloud environments. My focus now is **AI engineering**: GenAI, model fine-tuning, harness engineering, and graph engineering.
 
 Recently, I've been pioneering AI-driven workflows using the Anthropic API and platform, Claude Code, GitHub Copilot, Gemini, Grok, AWS Kiro, and Google Antigravity. On Anthropic that includes extended thinking, prompt caching, and tool use. That work also includes local models, embeddings, and agentic workflows on AWS Bedrock, Google's agent platform, and DigitalOcean's agent platform. Recent systems work includes Kubernetes-native Go and Rust.
 
@@ -177,8 +177,6 @@ Constantly exploring emerging technologies and pioneering new approaches
 ---
 
 <div align="center">
-
-*"Turning complex challenges into elegant solutions, one commit at a time."*
 
 ![Visitors](https://komarev.com/ghpvc/?username=j1d2&color=blueviolet&style=flat-square&label=Profile+Views)
 
