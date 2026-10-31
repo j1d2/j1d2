@@ -17,7 +17,7 @@
 
 I'm a passionate technologist with **15+ years of experience** turning complex challenges into elegant solutions. My journey spans serverless architectures, Kubernetes orchestration, CI/CD automation, GitOps, and multi-cloud environments. My focus now is **AI engineering**: GenAI, model fine-tuning, harness engineering, and graph engineering.
 
-Recently, I've been pioneering AI-driven workflows using Claude, GitHub Copilot, Gemini, Grok, AWS Kiro, and Google Antigravity. That includes local models, embeddings, and agentic workflows on AWS Bedrock, Google's agent platform, and DigitalOcean's agent platform. Recent systems work includes Kubernetes-native Go and Rust.
+Recently, I've been pioneering AI-driven workflows using the Anthropic API and platform, Claude Code, GitHub Copilot, Gemini, Grok, AWS Kiro, and Google Antigravity. On Anthropic that includes extended thinking, prompt caching, and tool use. That work also includes local models, embeddings, and agentic workflows on AWS Bedrock, Google's agent platform, and DigitalOcean's agent platform. Recent systems work includes Kubernetes-native Go and Rust.
 
 ## 💡 What I Do
 
@@ -54,6 +54,7 @@ Constantly exploring emerging technologies and pioneering new approaches
 
 ### AI & ML Tools
 ![Claude](https://img.shields.io/badge/Claude-5A67D8?style=flat-square&logo=anthropic&logoColor=white)
+![Anthropic API](https://img.shields.io/badge/Anthropic_API-5A67D8?style=flat-square&logo=anthropic&logoColor=white)
 ![GitHub Copilot](https://img.shields.io/badge/GitHub_Copilot-000000?style=flat-square&logo=github&logoColor=white)
 ![OpenAI](https://img.shields.io/badge/OpenAI-412991?style=flat-square&logo=openai&logoColor=white)
 ![Gemini](https://img.shields.io/badge/Gemini-8E75B2?style=flat-square&logo=googlegemini&logoColor=white)
@@ -142,7 +143,7 @@ Constantly exploring emerging technologies and pioneering new approaches
 
 | **Category** | **Technologies** |
 |:---:|:---|
-| 🤖 **AI/ML** | GenAI, model fine-tuning, harness engineering, graph engineering, OpenAI, Claude, GitHub Copilot, Codex, Gemini, Grok, AWS Kiro, Google Antigravity, AWS Bedrock, Google ADK, DigitalOcean Gradient, OpenAI Agents SDK, LangChain, LangGraph, LlamaIndex, PyTorch, TensorFlow, Chroma, MCP, Ollama, SageMaker, Vertex AI |
+| 🤖 **AI/ML** | GenAI, model fine-tuning, harness engineering, graph engineering, OpenAI, Anthropic API, Claude Code, extended thinking, prompt caching, GitHub Copilot, Codex, Gemini, Grok, AWS Kiro, Google Antigravity, AWS Bedrock, Google ADK, DigitalOcean Gradient, OpenAI Agents SDK, LangChain, LangGraph, LlamaIndex, PyTorch, TensorFlow, Chroma, MCP, Ollama, SageMaker, Vertex AI |
 | ☁️ **Cloud** | AWS, GCP, Azure, Alibaba Cloud, DigitalOcean, Kubernetes, Terraform, CDK, Docker, Lambda, Cloud Run, Bedrock |
 | 🔧 **DevOps** | GitHub Actions, GitLab CI, Jenkins, Flux, Crossplane, Argo CD, Helm, GitOps |
 | 💾 **Data** | Snowflake, Redshift, PostgreSQL, CloudNativePG, DuckDB, Polars, MongoDB, Kafka, Airflow, DBT |
@@ -154,7 +155,7 @@ Constantly exploring emerging technologies and pioneering new approaches
 ## 🏆 Highlights
 
 - 🏗️ **Architected** real-time reconciliation systems processing **billions of events daily**
-- 🤖 **Pioneered** AI-driven workflows with Claude, GitHub Copilot, Gemini, Grok, AWS Kiro, and Google Antigravity, including local models, embeddings, and agentic workflows on AWS Bedrock and the Google and DigitalOcean agent platforms
+- 🤖 **Pioneered** AI-driven workflows on the Anthropic API and platform (extended thinking, prompt caching, and tool use) plus Claude Code, GitHub Copilot, Gemini, Grok, AWS Kiro, and Google Antigravity, including local models, embeddings, and agentic workflows on AWS Bedrock and the Google and DigitalOcean agent platforms
 - 🤖 **AI engineering** for GenAI, model fine-tuning, harness engineering, graph engineering, retrieval, embeddings, and inference routing across cloud and local models
 - ☁️ **Led** multi-cloud migrations and hybrid cloud implementations
 - 📊 **Built** observability with Prometheus, Grafana, Loki, Tempo, and Thanos, plus OpenTelemetry and Fluent Bit
